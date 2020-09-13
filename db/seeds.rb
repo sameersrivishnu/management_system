@@ -47,16 +47,24 @@ wares = WareHouse.create([{ wh_code: 'Star', name:'Mumbai', pincode: 566914, max
 wares.each do |u|
 	products.each do |v|
 		if (u.name == "Banglore")
-		  ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 0, low_item_threshold: 20)
+			if(v.id % 3 == 0)
+		      ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 6, low_item_threshold: 10)
+            else
+		      ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 25, low_item_threshold: 10)
+            end	
 	    end
 
 		if (u.name == "Mumbai")
-		  ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 0, low_item_threshold: 10)
+		  ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 20, low_item_threshold: 10)
 	    end
 
 		if (u.name == "New Delhi")
-		  ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 0, low_item_threshold: 30)
-	    end	
+			if(v.id % 2 == 0)
+		      ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 6, low_item_threshold: 10)
+            else
+		      ProductWareHouse.create(product_id: v.id , ware_house_id: u.id, item_count: 36, low_item_threshold: 10)
+            end	
+        end	
 
 	end
 end	 
