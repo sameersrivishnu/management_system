@@ -1,0 +1,55 @@
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :sku_code %>
+    <%= form.text_field :sku_code %>
+  </div>
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= form.submit class: 'btn btn-success' %>
+  </div>
+<% end %>
+<% unless @product.id.nil?%>
+<table class="table-bordered table-striped text-center" style="width:90%">
+  <thead>
+    <tr>
+      <th>Warehouse Name</th>
+      <th>Item Count</th>
+      <th>Low Item Threshold</th>
+      <th colspan="2">Action</th>      
+    </tr>
+  </thead>
+
+  <tbody>
+	<% @product.product_ware_houses.each do |pro| %>
+	 <tr>
+	   <td><%= pro.ware_house.name%></td>
+	   <td>
+	   	<%= pro.item_count %></td>
+	   <td><%= pro.low_item_threshold %></td>
+	   <td><%= link_to 'Edit', edit_product_ware_house_path(pro) %></td>
+	 </tr>
+	<% end %>
+  </tbody>
+</table>
+
+<% end %>
+

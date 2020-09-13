@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ware Houses</h1>
+
+
+<div>
+<%= link_to '<button type="button"  class="btn btn-success">Add Ware House</button>'.html_safe, new_ware_house_path %>
+</div>
+
+<br>
+<table class="table-bordered table-striped text-center" style="width:90%">
+  <thead>
+    <tr>
+      <th>Ware House code</th>
+      <th>Name</th>
+      <th>Pincode</th>
+      <th>Max Capacity</th>  
+    <th colspan="1">Actions</th>                 
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @ware_houses.each do |ware_house| %>
+      <tr>
+        <td><%= ware_house.wh_code %>
+        <td><%= ware_house.name %>
+        <td><%= ware_house.pincode %>
+        <td><%= ware_house.max_capacity %>
+        <td><%= link_to 'Edit', edit_ware_house_path(ware_house) %></td>
+        <td><%= link_to 'Destroy', ware_house, method: :delete, data: { confirm: 'Are you sure?' } %></td>        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<a href="/products", class="btn btn-secondary text-center", style="color:white">Home</a>
